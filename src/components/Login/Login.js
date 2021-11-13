@@ -25,6 +25,7 @@ const Login = () => {
       email: email
     }
     setLoggedIn(loggedInUser)
+    tokenUser()
     history.replace(from);
   }).catch((error) => {
     var errorMessage = error.message;
@@ -44,6 +45,7 @@ const Login = () => {
       email: email
     }
     setLoggedIn(loggedInUser)
+    tokenUser()
     history.replace(from);
   }).catch((error) => {
     var errorMessage = error.message;
@@ -61,6 +63,7 @@ const Login = () => {
       email: email
     }
     setLoggedIn(loggedInUser)
+    tokenUser()
     history.replace(from);
   })
   .catch((error) => {
@@ -68,6 +71,20 @@ const Login = () => {
     console.log(errorMessage);
   })
   };
+
+
+  // firebase jwt token
+  const tokenUser = ()=>{
+    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
+    .then(function(idToken) {
+      sessionStorage.setItem("token",idToken)
+    })
+    .catch(function(error) {
+      // Handle error
+    });
+
+  }
+
   return(
     <div>
       <button onClick={googleSignIn}>Google Sign In</button>
