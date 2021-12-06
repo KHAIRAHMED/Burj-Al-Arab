@@ -32,7 +32,6 @@ const Book = () => {
 
   const handleBooking = ()=>{
     const bookingData = {...selectedDate , ...isLoggedIn}
-    console.log("clicked",bookingData)
     fetch("http://localhost:4000/addBooking",
     {
       headers: {
